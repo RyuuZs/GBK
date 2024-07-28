@@ -1,342 +1,292 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Gunting Batu Kertas</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                text-align: center;
-                background: linear-gradient(135deg, #ffcc33, #ff6699, #66ccff);
-                background-size: 400% 400%;
-                animation: gradient 15s ease infinite;
-                margin: 0;
-                padding: 20px;
-            }
-            @keyframes gradient {
-                0% {
-                    background-position: 0% 50%;
-                }
-                50% {
-                    background-position: 100% 50%;
-                }
-                100% {
-                    background-position: 0% 50%;
-                }
-            }
-            h1 {
-                margin-top: 50px;
-                color: #fff;
-            }
-            .game-container {
-                display: flex;
-                justify-content: center;
-                margin-top: 20px;
-            }
-            .result,
-            .scoreboard,
-            .reset-button,
-            .leaderboard {
-                display: none;
-            }
-            .choice {
-                margin: 0 20px;
-                cursor: pointer;
-            }
-            .choice img {
-                width: 100px;
-                height: 100px;
-            }
-            .result {
-                margin-top: 20px;
-                font-size: 1.5em;
-                color: #fff;
-            }
-            .scoreboard {
-                margin-top: 20px;
-                font-size: 1.2em;
-                color: #fff;
-            }
-            .reset-button {
-                margin-top: 20px;
-                padding: 10px 20px;
-                font-size: 1em;
-                background-color: #ff6699;
-                border: none;
-                border-radius: 5px;
-                color: #fff;
-                cursor: pointer;
-            }
-            .reset-button:hover {
-                background-color: #ff3366;
-            }
-            .leaderboard {
-                margin-top: 20px;
-                color: #fff;
-                font-size: 1.2em;
-            }
-            .leaderboard table {
-                width: 100%;
-                margin: 20px auto;
-                border-collapse: collapse;
-            }
-            .leaderboard th,
-            .leaderboard td {
-                padding: 10px;
-                border: 1px solid #fff;
-            }
-            .leaderboard th {
-                background-color: #ff6699;
-            }
-            .name-input-container {
-                margin-top: 50px;
-            }
-            .name-input {
-                padding: 10px;
-                font-size: 1em;
-            }
-            .start-button {
-                padding: 10px 20px;
-                font-size: 1em;
-                background-color: #66ccff;
-                border: none;
-                border-radius: 5px;
-                color: #fff;
-                cursor: pointer;
-            }
-            .start-button:hover {
-                background-color: #3399ff;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>Gunting Batu Kertas</h1>
-        <div class="name-input-container">
-            <input
-                type="text"
-                id="name-input"
-                class="name-input"
-                placeholder="Masukkan Nama"
-            />
-            <button class="start-button" id="start-button">Mulai</button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gunting Batu Kertas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #ffcc33, #ff6699, #66ccff);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            margin: 0;
+            padding: 20px;
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        h1 {
+            margin-top: 50px;
+            color: #fff;
+        }
+        .game-container, .result, .scoreboard, .reset-button, .leaderboard {
+            display: none;
+        }
+        .choice {
+            margin: 0 20px;
+            cursor: pointer;
+        }
+        .choice img {
+            width: 100px;
+            height: 100px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #fff;
+        }
+        .scoreboard {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #fff;
+        }
+        .reset-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #ff6699;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .reset-button:hover {
+            background-color: #ff3366;
+        }
+        .leaderboard {
+            margin-top: 20px;
+            color: #fff;
+            font-size: 1.2em;
+        }
+        .leaderboard table {
+            width: 100%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        .leaderboard th, .leaderboard td {
+            padding: 10px;
+            border: 1px solid #fff;
+        }
+        .leaderboard th {
+            background-color: #ff6699;
+        }
+        .name-input-container {
+            margin-top: 50px;
+        }
+        .name-input {
+            padding: 10px;
+            font-size: 1em;
+        }
+        .start-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #66ccff;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .start-button:hover {
+            background-color: #3399ff;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gunting Batu Kertas</h1>
+    <div class="name-input-container">
+        <input type="text" id="name-input" class="name-input" placeholder="Masukkan Nama">
+        <button class="start-button" id="start-button">Mulai</button>
+    </div>
+    <div class="game-container">
+        <div class="choice" id="rock">
+            <img src="https://cdn-icons-png.flaticon.com/512/3014/3014731.png" alt="Rock">
+            <p>Batu</p>
         </div>
-        <div class="game-container">
-            <div class="choice" id="rock">
-                <img
-                    src="https://cdn-icons-png.flaticon.com/512/3014/3014731.png"
-                    alt="Rock"
-                />
-                <p>Batu</p>
-            </div>
-            <div class="choice" id="paper">
-                <img
-                    src="https://cdn-icons-png.flaticon.com/512/2170/2170152.png"
-                    alt="Paper"
-                />
-                <p>Kertas</p>
-            </div>
-            <div class="choice" id="scissors">
-                <img
-                    src="https://cdn-icons-png.flaticon.com/512/642/642131.png"
-                    alt="Scissors"
-                />
-                <p>Gunting</p>
-            </div>
+        <div class="choice" id="paper">
+            <img src="https://cdn-icons-png.flaticon.com/512/2170/2170152.png" alt="Paper">
+            <p>Kertas</p>
         </div>
-        <div class="result" id="result"></div>
-        <div class="scoreboard">
-            Menang: <span id="win-score">0</span> | Kalah:
-            <span id="lose-score">0</span> | Seri:
-            <span id="draw-score">0</span>
+        <div class="choice" id="scissors">
+            <img src="https://cdn-icons-png.flaticon.com/512/642/642131.png" alt="Scissors">
+            <p>Gunting</p>
         </div>
-        <button class="reset-button" id="reset-button">Main Ulang</button>
-        <div class="leaderboard">
-            <h2>Top Leaderboard</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nama</th>
-                        <th>Menang</th>
-                        <th>Kalah</th>
-                        <th>Seri</th>
-                    </tr>
-                </thead>
-                <tbody id="leaderboard-body"></tbody>
-            </table>
-        </div>
+    </div>
+    <div class="result" id="result"></div>
+    <div class="scoreboard">
+        Menang: <span id="win-score">0</span> | Kalah: <span id="lose-score">0</span> | Seri: <span id="draw-score">0</span>
+    </div>
+    <button class="reset-button" id="reset-button">Main Ulang</button>
+    <div class="leaderboard">
+        <h2>Top Leaderboard</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Menang</th>
+                    <th>Kalah</th>
+                    <th>Seri</th>
+                </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+            </tbody>
+        </table>
+    </div>
 
-        <script>
-            const choices = document.querySelectorAll(".choice");
-            const result = document.getElementById("result");
-            const winScore = document.getElementById("win-score");
-            const loseScore = document.getElementById("lose-score");
-            const drawScore = document.getElementById("draw-score");
-            const resetButton = document.getElementById("reset-button");
-            const startButton = document.getElementById("start-button");
-            const nameInput = document.getElementById("name-input");
-            const leaderboardBody = document.getElementById("leaderboard-body");
-            const choicesArray = ["rock", "paper", "scissors"];
-            let userWinCount = 0;
-            let userLoseCount = 0;
-            let drawCount = 0;
-            let playerName = "";
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyCX-1KdYVKNYILHLf8u5NF-2UXptamggQU",
+            authDomain: "guntingbatukertas-177fd.firebaseapp.com",
+            projectId: "guntingbatukertas-177fd",
+            storageBucket: "guntingbatukertas-177fd.appspot.com",
+            messagingSenderId: "843597685095",
+            appId: "1:843597685095:web:2272d15b3250f568a20fc2","
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-            startButton.addEventListener("click", startGame);
-            choices.forEach(choice => choice.addEventListener("click", game));
-            resetButton.addEventListener("click", resetGame);
+        const choices = document.querySelectorAll('.choice');
+        const result = document.getElementById('result');
+        const winScore = document.getElementById('win-score');
+        const loseScore = document.getElementById('lose-score');
+        const drawScore = document.getElementById('draw-score');
+        const resetButton = document.getElementById('reset-button');
+        const startButton = document.getElementById('start-button');
+        const nameInput = document.getElementById('name-input');
+        const leaderboardBody = document.getElementById('leaderboard-body');
+        const choicesArray = ['rock', 'paper', 'scissors'];
+        let userWinCount = 0;
+        let userLoseCount = 0;
+        let drawCount = 0;
+        let playerName = '';
 
-            function startGame() {
-                playerName = nameInput.value.trim();
-                if (playerName === "") {
-                    alert("Masukkan nama Anda");
-                    return;
-                }
+        startButton.addEventListener('click', startGame);
+        choices.forEach(choice => choice.addEventListener('click', game));
+        resetButton.addEventListener('click', resetGame);
 
-                // Check if player already exists in leaderboard and set their scores
-                const leaderboard =
-                    JSON.parse(localStorage.getItem("leaderboard")) || [];
-                const existingPlayer = leaderboard.find(
-                    p => p.name === playerName
-                );
+        function startGame() {
+            playerName = nameInput.value.trim();
+            if (playerName === '') {
+                alert('Masukkan nama Anda');
+                return;
+            }
 
-                if (existingPlayer) {
-                    userWinCount = existingPlayer.win;
-                    userLoseCount = existingPlayer.lose;
-                    drawCount = existingPlayer.draw;
+            // Fetch player's scores from Firestore
+            db.collection('leaderboard').doc(playerName).get().then(doc => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    userWinCount = data.win;
+                    userLoseCount = data.lose;
+                    drawCount = data.draw;
                 } else {
                     userWinCount = 0;
                     userLoseCount = 0;
                     drawCount = 0;
                 }
-
                 winScore.textContent = userWinCount;
                 loseScore.textContent = userLoseCount;
                 drawScore.textContent = drawCount;
 
-                document.querySelector(".name-input-container").style.display =
-                    "none";
-                document.querySelector(".game-container").style.display =
-                    "flex";
-                document.querySelector(".result").style.display = "block";
-                document.querySelector(".scoreboard").style.display = "block";
-                document.querySelector(".reset-button").style.display =
-                    "inline-block";
-                document.querySelector(".leaderboard").style.display = "block";
+                document.querySelector('.name-input-container').style.display = 'none';
+                document.querySelector('.game-container').style.display = 'flex';
+                document.querySelector('.result').style.display = 'block';
+                document.querySelector('.scoreboard').style.display = 'block';
+                document.querySelector('.reset-button').style.display = 'inline-block';
+                document.querySelector('.leaderboard').style.display = 'block';
                 renderLeaderboard();
+            });
+        }
+
+        function game(event) {
+            const userChoice = event.currentTarget.id;
+            const computerChoice = choicesArray[Math.floor(Math.random() * choicesArray.length)];
+            const winner = getWinner(userChoice, computerChoice);
+            displayResult(userChoice, computerChoice, winner);
+            updateScore(winner);
+            disableChoices();
+        }
+
+        function getWinner(user, computer) {
+            if (user === computer) {
+                return 'draw';
+            } else if ((user === 'rock' && computer === 'scissors') || 
+                       (user === 'scissors' && computer === 'paper') || 
+                       (user === 'paper' && computer === 'rock')) {
+                return 'user';
+            } else {
+                return 'computer';
             }
+        }
 
-            function game(event) {
-                const userChoice = event.currentTarget.id;
-                const computerChoice =
-                    choicesArray[
-                        Math.floor(Math.random() * choicesArray.length)
-                    ];
-                const winner = getWinner(userChoice, computerChoice);
-                displayResult(userChoice, computerChoice, winner);
-                updateScore(winner);
-                disableChoices();
+        function displayResult(user, computer, winner) {
+            let resultText = `Kamu memilih: ${user}, Komputer memilih: ${computer}. `;
+            if (winner === 'draw') {
+                resultText += "Hasil: Seri!";
+            } else if (winner === 'user') {
+                resultText += "Kamu Menang!";
+            } else {
+                resultText += "Kamu Kalah!";
             }
+            result.textContent = resultText;
+        }
 
-            function getWinner(user, computer) {
-                if (user === computer) {
-                    return "draw";
-                } else if (
-                    (user === "rock" && computer === "scissors") ||
-                    (user === "scissors" && computer === "paper") ||
-                    (user === "paper" && computer === "rock")
-                ) {
-                    return "user";
-                } else {
-                    return "computer";
-                }
+        function updateScore(winner) {
+            if (winner === 'user') {
+                userWinCount++;
+                winScore.textContent = userWinCount;
+            } else if (winner === 'computer') {
+                userLoseCount++;
+                loseScore.textContent = userLoseCount;
+            } else if (winner === 'draw') {
+                drawCount++;
+                drawScore.textContent = drawCount;
             }
+            updateLeaderboard();
+        }
 
-            function displayResult(user, computer, winner) {
-                let resultText = `Kamu memilih: ${user}, Komputer memilih: ${computer}. `;
-                if (winner === "draw") {
-                    resultText += "Hasil: Seri!";
-                } else if (winner === "user") {
-                    resultText += "Kamu Menang!";
-                } else {
-                    resultText += "Kamu Kalah!";
-                }
-                result.textContent = resultText;
-            }
+        function updateLeaderboard() {
+            const player = { name: playerName, win: userWinCount, lose: userLoseCount, draw: drawCount };
+            db.collection('leaderboard').doc(playerName).set(player)
+                .then(() => renderLeaderboard());
+        }
 
-            function updateScore(winner) {
-                if (winner === "user") {
-                    userWinCount++;
-                    winScore.textContent = userWinCount;
-                } else if (winner === "computer") {
-                    userLoseCount++;
-                    loseScore.textContent = userLoseCount;
-                } else if (winner === "draw") {
-                    drawCount++;
-                    drawScore.textContent = drawCount;
-                }
-                updateLeaderboard();
-            }
+        function renderLeaderboard() {
+            db.collection('leaderboard').orderBy('win', 'desc').get().then(querySnapshot => {
+                leaderboardBody.innerHTML = querySnapshot.docs.map(doc => {
+                    const player = doc.data();
+                    return `
+                        <tr>
+                            <td>${player.name}</td>
+                            <td>${player.win}</td>
+                            <td>${player.lose}</td>
+                            <td>${player.draw}</td>
+                        </tr>
+                    `;
+                }).join('');
+            });
+        }
 
-            function updateLeaderboard() {
-                let leaderboard =
-                    JSON.parse(localStorage.getItem("leaderboard")) || [];
-                let player = leaderboard.find(p => p.name === playerName);
+        function disableChoices() {
+            choices.forEach(choice => {
+                choice.style.pointerEvents = 'none';
+            });
+        }
 
-                if (player) {
-                    player.win = userWinCount;
-                    player.lose = userLoseCount;
-                    player.draw = drawCount;
-                } else {
-                    player = {
-                        name: playerName,
-                        win: userWinCount,
-                        lose: userLoseCount,
-                        draw: drawCount
-                    };
-                    leaderboard.push(player);
-                }
+        function resetGame() {
+            result.textContent = '';
+            choices.forEach(choice => {
+                choice.style.pointerEvents = 'auto';
+            });
+        }
 
-                leaderboard.sort((a, b) => b.win - a.win);
-                localStorage.setItem(
-                    "leaderboard",
-                    JSON.stringify(leaderboard)
-                );
-
-                renderLeaderboard();
-            }
-
-            function renderLeaderboard() {
-                const leaderboard =
-                    JSON.parse(localStorage.getItem("leaderboard")) || [];
-                leaderboardBody.innerHTML = leaderboard
-                    .map(
-                        player => `
-                <tr>
-                    <td>${player.name}</td>
-                    <td>${player.win}</td>
-                    <td>${player.lose}</td>
-                    <td>${player.draw}</td>
-                </tr>
-            `
-                    )
-                    .join("");
-            }
-
-            function disableChoices() {
-                choices.forEach(choice => {
-                    choice.style.pointerEvents = "none";
-                });
-            }
-
-            function resetGame() {
-                result.textContent = "";
-                choices.forEach(choice => {
-                    choice.style.pointerEvents = "auto";
-                });
-            }
-
-            document.addEventListener("DOMContentLoaded", renderLeaderboard);
-        </script>
-    </body>
+        document.addEventListener('DOMContentLoaded', renderLeaderboard);
+    </script>
+</body>
 </html>
