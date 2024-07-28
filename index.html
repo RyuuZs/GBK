@@ -146,7 +146,7 @@
             projectId: "guntingbatukertas-177fd",
             storageBucket: "guntingbatukertas-177fd.appspot.com",
             messagingSenderId: "843597685095",
-            appId: "1:843597685095:web:2272d15b3250f568a20fc2","
+            appId: "1:843597685095:web:2272d15b3250f568a20fc2"
         };
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
@@ -179,16 +179,19 @@
             }
 
             // Fetch player's scores from Firestore
+            console.log('Fetching player data...');
             db.collection('leaderboard').doc(playerName).get().then(doc => {
                 if (doc.exists) {
                     const data = doc.data();
                     userWinCount = data.win;
                     userLoseCount = data.lose;
                     drawCount = data.draw;
+                    console.log('Player data found:', data);
                 } else {
                     userWinCount = 0;
                     userLoseCount = 0;
                     drawCount = 0;
+                    console.log('No player data found, initializing...');
                 }
                 winScore.textContent = userWinCount;
                 loseScore.textContent = userLoseCount;
@@ -201,6 +204,8 @@
                 document.querySelector('.reset-button').style.display = 'inline-block';
                 document.querySelector('.leaderboard').style.display = 'block';
                 renderLeaderboard();
+            }).catch(error => {
+                console.error('Error fetching player data:', error);
             });
         }
 
@@ -258,9 +263,11 @@
         }
 
         function renderLeaderboard() {
+            console.log('Rendering leaderboard...');
             db.collection('leaderboard').orderBy('win', 'desc').get().then(querySnapshot => {
                 leaderboardBody.innerHTML = querySnapshot.docs.map(doc => {
                     const player = doc.data();
+                    console.log('Player on leaderboard:', player);
                     return `
                         <tr>
                             <td>${player.name}</td>
@@ -270,6 +277,8 @@
                         </tr>
                     `;
                 }).join('');
+            }).catch(error => {
+                console.error('Error rendering leaderboard:', error);
             });
         }
 
